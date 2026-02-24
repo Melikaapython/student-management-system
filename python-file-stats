@@ -1,0 +1,36 @@
+def read_numbers(filename):
+    numbers = []
+
+    with open(filename, "r") as file:
+        for line in file:
+            line = line.strip()
+            if line == "":
+                continue
+            numbers.append(int(line))
+
+    return numbers
+
+
+def get_stats(numbers):
+    mn = min(numbers)
+    mx = max(numbers)
+    avg = sum(numbers) / len(numbers)
+    return mn, mx, avg
+
+
+def write_result(filename, mn, mx, avg):
+    with open(filename, "w") as file:
+        file.write(f"Min = {mn}\n")
+        file.write(f"Max = {mx}\n")
+        file.write(f"Average = {avg}\n")
+
+
+numbers = read_numbers("numbers.txt")
+
+min_val, max_val, avg_val = get_stats(numbers)
+
+print(f"Min: {min_val}")
+print(f"Max: {max_val}")
+print(f"Average: {avg_val}")
+
+write_result("result.txt", min_val, max_val, avg_val)
